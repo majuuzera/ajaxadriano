@@ -4,18 +4,18 @@ $nome = $_REQUEST['nome'];
 $bebida = $_REQUEST['bebida'];
 $data = $_REQUEST['data'];
 
-$anoAtual = date('Y');
+$anoatual = date('Y');
 
-$anoNasc = date("Y", strtotime($data));
+$anonasc = date("Y", strtotime($data));
 
-$idade = $anoAtual - $anoNasc;
+$idade = $anoatual - $anonasc;
 
 
 if(empty($nome && $bebida && $data)){
     $dados = array(
 
         "tipo" => 'error',
-        "mensagem" => 'campos não definidos.'
+        "mensagem" => 'campos não vazios.'
     );
 
 } else {
@@ -24,7 +24,8 @@ if(empty($nome && $bebida && $data)){
         $dados = array(
             "mensagem" =>  'olá ' . $nome . ' sua bebida favorita é ' .$bebida . '. <br> Sua idade é ' . $idade . ', portanto você é de maior '
         );
-    }else {
+    }
+    else {
         $dados = array(
             "mensagem" =>  'olá ' . $nome . ' sua bebida favorita é ' .$bebida . '. <br> Sua idade é ' . $idade. ', portanto você é de menor '
         );
