@@ -4,29 +4,35 @@ $nome = $_REQUEST['nome'];
 $bebida = $_REQUEST['bebida'];
 $data = $_REQUEST['data'];
 
-$anoatual = date('Y');
-$anonasci = date("Y", strtotime($data));
-$idade = $anoatual - $anonasci;
+$anoAtual = date('Y');
+
+$anoNasc = date("Y", strtotime($data));
+
+$idade = $anoAtual - $anoNasc;
+
 
 if(empty($nome && $bebida && $data)){
     $dados = array(
+
         "tipo" => 'error',
-        "mensagem" => 'campos vazios'
+        "mensagem" => 'campos não definidos.'
     );
+
+} else {
+
+    if($idade >= 18){
+        $dados = array(
+            "mensagem" =>  'olá ' . $nome . ' sua bebida favorita é ' .$bebida . '. <br> Sua idade é ' . $idade . ', portanto você é de maior '
+        );
+    }else {
+        $dados = array(
+            "mensagem" =>  'olá ' . $nome . ' sua bebida favorita é ' .$bebida . '. <br> Sua idade é ' . $idade. ', portanto você é de menor '
+        );
+    }
+    
+    
+
+   
 }
 
-
- else {
-    if($idade >= 18){
-           $dados = array(
-            "mensagem" => 'bem-vindo ' . $nome . ' sua bebida é ' . $bebida . ' sua idade é ' . $idade . ' voce é de maior'
-        );
-    } else{
-        $dados = array(
-            "mensagem" => 'bem-vindo ' . $nome . ' sua bebida é ' . $bebida . 'sua idade é ' . $idade . 'voce é de menor'
-        )
-    }
-
-
-   echo json_encode($dados);
-        
+echo json_encode($dados);
