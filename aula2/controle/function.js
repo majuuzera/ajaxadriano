@@ -20,7 +20,6 @@ $(document).ready(function() {
                 <h1 class="text-white text-center">
                    ${dados.mensagem}
                 </h1>
-                <img src="../../img/${dados.tipo}" class="img-fluid">
              </div>
             </div>
     `)

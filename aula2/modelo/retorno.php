@@ -1,36 +1,30 @@
 <?php
 
-    $nome = $_REQUEST['nome'];
-    $idade = $_REQUEST['idade'];
-    $bebida = $_REQUEST['bebida'];
+$nome = $_REQUEST['nome'];
+$bebida = $_REQUEST['bebida'];
+$data = $_REQUEST['data'];
 
-    if(empty($nome)empty($idade)empty($bebida)){
+$anoatual = date('Y');
+$anonasci = date("Y", strtotime($data));
+$idade = $anoatual - $anonasci;
+
+if(empty($nome && $bebida && $data)){​​    
+    $dados = array(        
+        "tipo" => 'error',        
+        "mensagem" => 'campos não definidos.'    
+    );
+}​​
+
+ else {    
+    if($idade >= 18){        
+        $dados = array(            
+            "mensagem" =>  'olá ' . $nome . ' sua bebida favorita é ' .$bebida . '<br> Sua idade é ' . $idade . ', portanto você é de maior '        
+        );    }
+        else {        
+            $dados = array(            
+                "mensagem" =>  'olá ' . $nome . ' sua bebida favorita é ' .$bebida . '. Sua idade é ' . $idade. ', portanto você é de menor '        
+            );    
+        }           }
         
-        $dados = array(
-            "tipo" => 'error',
-            "mensagem" => 'There are unfilled fields.'
-        );
-    
-    } else {
+        echo json_encode($dados);
 
-        switch(){
-            case '1' : $dados = array(
-                "tipo" => 'pincher.jpg',
-                "mensagem" => 'Hello'.$nome.', we know that your favorite animal is a dog'
-            );
-            break;
-            case '2' : $dados = array(
-                "tipo" => 'picapau.jpg',
-                "mensagem" => 'Hello '.$nome.', we know that your favorite animal is a bird'
-            );
-            break;
-            case '3' : $dados = array(
-                "tipo" => 'mbappe.jpg',
-                "mensagem" => 'Hello '.$nome.', we know that your favorite animal is a turtle'
-            );
-            break;
-        }
-
-    }
-
-    echo json_encode($dados); 
